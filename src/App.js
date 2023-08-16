@@ -12,8 +12,8 @@ import './App.css';
 function App() {
   return (
     <GlobalContextProvider>
-      <Header/>
-      <div className="container">
+      <Header />
+      <div className='container'>
         <Balance />
         <IncomeExpenses />
         <TransactionList />
