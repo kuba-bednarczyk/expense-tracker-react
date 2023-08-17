@@ -1,21 +1,20 @@
-import React, {createContext, useReducer} from 'react';
-import AppReducer from './AppReducer'
+import React, { createContext, useReducer } from 'react';
+import AppReducer from './AppReducer';
+
+const isDataExists = localStorage.getItem('TRANSACTIONS') !== null;
 
 // Initial state
 const initialState = {
-  transactions: [
-    {id: 111233232, text: 'Spodnie', amount: -150},
-    {id: 223321122, text: 'Koszula biała', amount: -120},
-    {id: 312309976, text: 'Koszula niebieska', amount: -130},
-    {id: 423123784, text: 'Praca dorywcza', amount: 340},
-  ]
+  transactions: isDataExists ? JSON.parse(localStorage.getItem('TRANSACTIONS')) : [],
 };
+
+console.log(initialState)
 
 // Create context;
 export const GlobalContext = createContext(initialState);
 
 // Provider component
-const GlobalContextProvider = ({children}) => {
+const GlobalContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   // Actions
@@ -23,25 +22,33 @@ const GlobalContextProvider = ({children}) => {
     dispatch({
       type: 'DELETE_TRANSACTION',
       payload: id,
-    })
-  }
+    });
+
+    const updatedItems = state.transactions.filter((transaction) => transaction.id !== id );
+    localStorage.setItem('TRANSACTIONS', JSON.stringify(updatedItems));
+  };
 
   const addTransaction = (transaction) => {
     dispatch({
       type: 'ADD_TRANSACTION',
-      payload: transaction
-    })
+      payload: transaction,
+    });
+
+    const updatedItems = [...state.transactions, transaction];
+    localStorage.setItem('TRANSACTIONS', JSON.stringify(updatedItems));
   };
 
   return (
-    <GlobalContext.Provider value={{
-      transactions: state.transactions,
-      deleteTransaction,
-      addTransaction,
-    }}>
+    <GlobalContext.Provider
+      value={{
+        transactions: state.transactions,
+        deleteTransaction,
+        addTransaction,
+      }}
+    >
       {children}
     </GlobalContext.Provider>
-  )
+  );
 };
 
 export default GlobalContextProvider;

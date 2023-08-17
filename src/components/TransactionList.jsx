@@ -23,7 +23,7 @@ const TransactionList = () => {
         {filteredTransactions.map((transaction) => (
           <Transaction transaction={transaction} key={transaction.id} />
         ))}
-      {filteredTransactions.length === 0 && (<p><strong>There's no such a transaction!</strong></p>)}
+      {filteredTransactions.length === 0 && (<p><strong>List of transactions is empty.</strong></p>)}
       </ul>
     </>
   );
