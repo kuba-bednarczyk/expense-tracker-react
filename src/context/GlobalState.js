@@ -1,21 +1,20 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer, useState } from 'react';
 import AppReducer from './AppReducer';
 
 const isDataExists = localStorage.getItem('TRANSACTIONS') !== null;
-
-// Initial state
 const initialState = {
   transactions: isDataExists ? JSON.parse(localStorage.getItem('TRANSACTIONS')) : [],
 };
-
-console.log(initialState)
 
 // Create context;
 export const GlobalContext = createContext(initialState);
 
 // Provider component
 const GlobalContextProvider = ({ children }) => {
+  // state for the data
   const [state, dispatch] = useReducer(AppReducer, initialState);
+  // state for the theme
+  const [theme, setTheme] = useState('light');
 
   // Actions
   const deleteTransaction = (id) => {
@@ -44,6 +43,8 @@ const GlobalContextProvider = ({ children }) => {
         transactions: state.transactions,
         deleteTransaction,
         addTransaction,
+        theme,
+        setTheme
       }}
     >
       {children}
