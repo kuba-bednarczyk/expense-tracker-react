@@ -1,15 +1,36 @@
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 
 :root {
-  --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --light-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --light-background: #f7f7f7;
+  --light-container-background: #fff;
+  --light-border-bottom: #bbb;
+  --light-border: #dedede;
+  --light-text: #000;
+  --light-btn: #9c88ff;
+  --light-income: #2ecc71;
+  --light-expense: #c0392b;
+  --light-delete-btn: #e74c3c;
+
+  --dark-box-shadow: ;
+  --dark-background: #2c3e50; /* ZMIENIĆ TEN KOLOR NA INNY BO NIE KONTRASTUJE ZE SWTICHEM */
+  --dark-container-background: ;
+  --dark-border-bottom: #f7f7f7;
+  --dark-border: ;
+  --dark-text: #fff;
+  --dark-btn: ;
+  --dark-income: ;
+  --dark-expense: ;
+  --dark-delete-btn: ;
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body {
-  background-color: #f7f7f7;
+.App {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,6 +38,17 @@ body {
   min-height: 100vh;
   margin: 0;
   font-family: 'Lato', sans-serif;
+  padding: 20px;
+}
+
+#light.App {
+  background-color: var(--light-background);
+  color: var(--light-text)
+}
+
+#dark.App {
+  background-color: var(--dark-background);
+  color: var(--dark-text)
 }
 
 .container {
@@ -29,10 +61,21 @@ h1 {
   margin: 0;
 }
 
+h2 {
+  padding: 0 0 20px 0;
+}
+
 h3 {
-  border-bottom: 1px solid #bbb;
   padding-bottom: 10px;
   margin: 40px 0 10px;
+}
+
+#light h3 {
+  border-bottom: 1px solid var(--light-border-bottom);
+}
+
+#dark h3 {
+  border-bottom: 1px solid var(--dark-border-bottom);
 }
 
 h4 {
@@ -40,13 +83,25 @@ h4 {
   text-transform: uppercase;
 }
 
+p {
+  padding: 15px 0 0 0;
+}
+
 .inc-exp-container {
-  background-color: #fff;
-  box-shadow: var(--box-shadow);
   padding: 20px;
   display: flex;
   justify-content: space-between;
   margin: 20px 0;
+}
+
+#light .inc-exp-container {
+  background-color: var(--light-container-background);
+  box-shadow: var(--light-box-shadow);
+}
+
+#dark .inc-exp-container {
+  background-color: var(--dark-container-background);
+  box-shadow: var(--dark-box-shadow);
 }
 
 .inc-exp-container > div {
@@ -54,8 +109,12 @@ h4 {
   text-align: center;
 }
 
-.inc-exp-container > div:first-of-type {
-  border-right: 1px solid #dedede;
+#light .inc-exp-container > div:first-of-type {
+  border-right: 1px solid var(--light-border);
+}
+
+#dark .inc-exp-container > div:first-of-type {
+  border-right: 1px solid var(--dark-border);
 }
 
 .money {
@@ -64,12 +123,20 @@ h4 {
   margin: 5px 0;
 }
 
-.money.plus {
-  color: #2ecc71;
+#light .money.plus {
+  color: var(--light-income);
 }
 
-.money.minus {
-  color: #c0392b;
+#light .money.minus {
+  color: var(--light-expense);
+}
+
+#dark .money.plus {
+  color: var(--dark-income);
+}
+
+#dark .money.minus {
+  color: var(--dark-expense);
 }
 
 label {
@@ -79,7 +146,7 @@ label {
 
 input[type='text'],
 input[type='number'] {
-  border: 1px solid #dedede;
+  
   border-radius: 2px;
   display: block;
   font-size: 16px;
@@ -87,10 +154,20 @@ input[type='number'] {
   width: 100%;
 }
 
+#light .container input[type='text'],
+#light .container input[type='number'] {
+  border: 1px solid var(--light-border);
+  background-color: blue;
+}
+
+#dark .container input[type='text'],
+#dark .container input[type='number'] {
+  border: 1px solid var(--dark-border);
+  background-color: blue;
+}
+
 .btn {
   cursor: pointer;
-  background-color: #9c88ff;
-  box-shadow: var(--box-shadow);
   color: #fff;
   border: 0;
   display: block;
@@ -98,6 +175,16 @@ input[type='number'] {
   margin: 10px 0 30px;
   padding: 10px;
   width: 100%;
+}
+
+#light .btn {
+  background-color: var(--light-btn);
+  box-shadow: var(--light-box-shadow);
+}
+
+#dark .btn {
+  background-color: var(--dark-btn);
+  box-shadow: var(--dark-box-shadow);
 }
 
 .btn:focus,
@@ -112,8 +199,6 @@ input[type='number'] {
 }
 
 .list li {
-  background-color: #fff;
-  box-shadow: var(--box-shadow);
   color: #333;
   display: flex;
   justify-content: space-between;
@@ -122,12 +207,30 @@ input[type='number'] {
   margin: 10px 0;
 }
 
-.list li.plus {
-  border-right: 5px solid #2ecc71;
+#light .list li {
+  background-color: var(--light-container-background);
+  box-shadow: var(--light-box-shadow);
 }
 
-.list li.minus {
-  border-right: 5px solid #c0392b;
+#light .list li.plus {
+  border-right: 5px solid var(--light-income);
+}
+
+#light .list li.minus {
+  border-right: 5px solid var(--light-expense);
+}
+
+#dark .list li {
+  background-color: var(--dark-container-background);
+  box-shadow: var(--dark-box-shadow);
+}
+
+#dark .list li.plus {
+  border-right: 5px solid var(--dark-income);
+}
+
+#dark .list li.minus {
+  border-right: 5px solid var(--dark-expense);
 }
 
 .delete-btn {
@@ -145,6 +248,9 @@ input[type='number'] {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
+
+
+ 
 
 .list li:hover .delete-btn {
   opacity: 1;

@@ -13,13 +13,15 @@ import './App.css';
 function App() {
   return (
     <GlobalContextProvider>
-      <SwitchButton />
-      <Header />
-      <div className='container'>
-        <Balance />
-        <IncomeExpenses />
-        <TransactionList />
-        <AddTransaction />
+      <div className='App' id='dark'>
+        <SwitchButton />
+        <div className='container'>
+          <Header />
+          <Balance />
+          <IncomeExpenses />
+          <TransactionList />
+          <AddTransaction />
+        </div>
       </div>
     </GlobalContextProvider>
   );
