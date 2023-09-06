@@ -13,8 +13,12 @@ export const GlobalContext = createContext(initialState);
 const GlobalContextProvider = ({ children }) => {
   // state for the data
   const [state, dispatch] = useReducer(AppReducer, initialState);
-  // state for the theme
+
+  //Theme logic
   const [theme, setTheme] = useState('light');
+  const toggleTheme = () => {
+    setTheme(currTheme => currTheme === 'light' ? 'dark' : 'light');
+  }
 
   // Actions
   const deleteTransaction = (id) => {
@@ -44,7 +48,7 @@ const GlobalContextProvider = ({ children }) => {
         deleteTransaction,
         addTransaction,
         theme,
-        setTheme
+        toggleTheme
       }}
     >
       {children}

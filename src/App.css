@@ -1,47 +1,34 @@
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 
 :root {
-
-  /* TODO: zamienic nazwy kolorow danych elementow na dane kolory (bardziej reuzywalne zmienne) */
-  
   --black: #000;
   --white: #fff;
-
-  --light-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  --light-background: #f7f7f7;
-  --light-container-background: #fff;
-  --light-border-bottom: #bbb;
-  --light-border: #dedede;
-  --light-text: #000;
-  --light-list-text: #333;
-  --light-placeholder-text: ;
-  --light-btn: #9c88ff;
-  --light-income: #2ecc71;
-  --light-expense: #c0392b;
+  --orange: #e74c3c;
+  --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
   /* LIGHT THEME PALLETE */
-  --light-white-darker: #f7f7f7;
-  --light-light-grey: #dedede;
+  --light-white-100: #f7f7f7;
+  --light-white-200: #dedede;
   --light-grey: #bbb;
   --light-dark-grey: #333;
   --light-lavendar: #9c88ff;
+  --light-lavendar-darker: #7364c0;
   --light-green: #2ecc71;
-  --light-dark-orange: #c0392b;
-  --light-light-red: #e74c3c;
+  --light-red: #c0392b;
 
   /* DARK THEME PALLETE */
-  --dark-background: #121212;
-  --dark-container-background: #282828;
-  --dark-border: #3f3f3f;
-  --dark-border-lighter: #8b8b8b;
-  --dark-text: #fff;
-  --dark-text-placeholder: #ecf0f1;
-  --dark-input-background: #393939;
-  --dark-placeholder-text: #969696;
-  --dark-btn: ;
-  --dark-income: ;
-  --dark-expense: ;
-  --dark-delete-btn: ;
+  --dark-100: #121212;
+  --dark-200: #282828;
+  --dark-300: #3f3f3f;
+  --dark-600: #8b8b8b;
+  --dark-grey-bright: #ecf0f1;
+  --dark-mixed-200: #393939;
+  --dark-mixed-600: #969696;
+  --dark-lavendar: #1B1464;
+  --dark-lavendar-lighter: #282086;
+  --dark-green: #009432;
+  --dark-red: #b33939;
+  --dark-orange: ;
 }
 
 * {
@@ -62,13 +49,13 @@
 }
 
 #light.App {
-  background-color: var(--light-background);
-  color: var(--light-text)
+  background-color: var(--light-white-100);
+  color: var(--black)
 }
 
 #dark.App {
-  background-color: var(--dark-background);
-  color: var(--dark-text)
+  background-color: var(--dark-100);
+  color: var(--white)
 }
 
 .container {
@@ -115,12 +102,12 @@ p {
 }
 
 #light .inc-exp-container {
-  background-color: var(--light-container-background);
-  box-shadow: var(--light-box-shadow);
+  background-color: var(--white);
+  box-shadow: var(--box-shadow);
 }
 
 #dark .inc-exp-container {
-  background-color: var(--dark-container-background);
+  background-color: var(--dark-200);
   /* box-shadow: var(--dark-box-shadow); */
 }
 
@@ -130,11 +117,11 @@ p {
 }
 
 #light .inc-exp-container > div:first-of-type {
-  border-right: 1px solid var(--light-border);
+  border-right: 1px solid var(--white-200);
 }
 
 #dark .inc-exp-container > div:first-of-type {
-  border-right: 2px solid var(--dark-border);
+  border-right: 2px solid var(--dark-300);
 }
 
 .money {
@@ -144,19 +131,19 @@ p {
 }
 
 #light .money.plus {
-  color: var(--light-income);
+  color: var(--light-green);
 }
 
 #light .money.minus {
-  color: var(--light-expense);
+  color: var(--light-red);
 }
 
 #dark .money.plus {
-  color: var(--dark-income);
+  color: var(--dark-green);
 }
 
 #dark .money.minus {
-  color: var(--dark-expense);
+  color: var(--dark-red);
 }
 
 label {
@@ -175,29 +162,29 @@ input[type='number'] {
 
 #light .container input[type='text'],
 #light .container input[type='number'] {
-  border: 1px solid var(--light-border);
+  border: 1px solid var(--light-white-200);
 }
 
 #dark .container input[type='text'],
 #dark .container input[type='number'] {
-  border: 1px solid var(--dark-border);
-  background-color: var(--dark-input-background);
+  border: 1px solid var(--dark-300);
+  background-color: var(--dark-mixed-200);
   color: #fff;
 }
 
 .container input[type='text']:focus,
 .container input[type='number']:focus {
-  outline: 1px solid var(--dark-border-lighter)
+  outline: 1px solid var(--dark-600)
 }
 
 #dark .container input[type='text']::placeholder,
 #dark .container input[type='number']::placeholder {
-  color: var(--dark-text-placeholder);
+  color: var(--white);
 }
 
 .btn {
   cursor: pointer;
-  color: #fff;
+  color: var(--white);
   border: 0;
   display: block;
   font-size: 16px;
@@ -207,13 +194,26 @@ input[type='number'] {
 }
 
 #light .btn {
-  background-color: var(--light-btn);
-  box-shadow: var(--light-box-shadow);
+  background-color: var(--light-lavendar);
+  box-shadow: var(--box-shadow);
+  transition: ease-in-out .2s;
 }
 
+#light .btn:hover {
+  background-color: var(--light-lavendar-darker);
+  transition: ease-in-out .2s;
+}
+
+
 #dark .btn {
-  background-color: var(--dark-btn);
-  box-shadow: var(--dark-box-shadow);
+  background-color: var(--dark-lavendar);
+  /* box-shadow: var(--dark-box-shadow); */
+}
+
+#dark .btn:hover {
+  background-color: var(--dark-lavendar-lighter);
+  transition: ease-in-out .2s;
+  /* box-shadow: var(--dark-box-shadow); */
 }
 
 .btn:focus,
@@ -236,34 +236,34 @@ input[type='number'] {
 }
 
 #light .list li {
-  background-color: var(--light-container-background);
-  box-shadow: var(--light-box-shadow);
+  background-color: var(--white);
+  box-shadow: var(--box-shadow);
 }
 
 #light .list li.plus {
-  border-right: 5px solid var(--light-income);
+  border-right: 5px solid var(--light-green);
 }
 
 #light .list li.minus {
-  border-right: 5px solid var(--light-expense);
+  border-right: 5px solid var(--light-red);
 }
 
 #dark .list li {
-  background-color: var(--dark-container-background);
-  box-shadow: var(--dark-box-shadow);
+  background-color: var(--dark-200);
+  /* box-shadow: var(--dark-box-shadow); */
 }
 
 #dark .list li.plus {
-  border-right: 5px solid var(--dark-income);
+  border-right: 5px solid var(--dark-green);
 }
 
 #dark .list li.minus {
-  border-right: 5px solid var(--dark-expense);
+  border-right: 5px solid var(--dark-red);
 }
 
 .delete-btn {
   cursor: pointer;
-  background-color: #e74c3c;
+  background-color: var(--orange);
   border: 0;
   color: #fff;
   font-size: 20px;

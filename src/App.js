@@ -1,4 +1,8 @@
-import React from 'react';
+import './App.css';
+
+import React, { useContext } from 'react';
+import { GlobalContext } from './context/GlobalState';
+
 import Header from './components/Header';
 import Balance from './components/Balance';
 import IncomeExpenses from './components/IncomeExpenses';
@@ -6,25 +10,21 @@ import TransactionList from './components/TransactionList';
 import AddTransaction from './components/AddTransaction';
 import SwitchButton from './components/SwitchButton';
 
-import GlobalContextProvider from './context/GlobalState';
+const App = () => {
+  const { theme } = useContext(GlobalContext);
 
-import './App.css';
-
-function App() {
   return (
-    <GlobalContextProvider>
-      <div className='App' id='light'>
-        <SwitchButton />
-        <div className='container'>
-          <Header />
-          <Balance />
-          <IncomeExpenses />
-          <TransactionList />
-          <AddTransaction />
-        </div>
+    <div className='App' id={theme}>
+      <SwitchButton />
+      <div className='container'>
+        <Header />
+        <Balance />
+        <IncomeExpenses />
+        <TransactionList />
+        <AddTransaction />
       </div>
-    </GlobalContextProvider>
+    </div>
   );
-}
+};
 
 export default App;
