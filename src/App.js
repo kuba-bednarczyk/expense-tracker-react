@@ -13,7 +13,7 @@ import './App.css';
 function App() {
   return (
     <GlobalContextProvider>
-      <div className='App' id='dark'>
+      <div className='App' id='light'>
         <SwitchButton />
         <div className='container'>
           <Header />

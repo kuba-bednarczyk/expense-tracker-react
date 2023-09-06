@@ -1,23 +1,43 @@
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 
 :root {
+
+  /* TODO: zamienic nazwy kolorow danych elementow na dane kolory (bardziej reuzywalne zmienne) */
+  
+  --black: #000;
+  --white: #fff;
+
   --light-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   --light-background: #f7f7f7;
   --light-container-background: #fff;
   --light-border-bottom: #bbb;
   --light-border: #dedede;
   --light-text: #000;
+  --light-list-text: #333;
+  --light-placeholder-text: ;
   --light-btn: #9c88ff;
   --light-income: #2ecc71;
   --light-expense: #c0392b;
-  --light-delete-btn: #e74c3c;
 
-  --dark-box-shadow: ;
-  --dark-background: #2c3e50; /* ZMIENIĆ TEN KOLOR NA INNY BO NIE KONTRASTUJE ZE SWTICHEM */
-  --dark-container-background: ;
-  --dark-border-bottom: #f7f7f7;
-  --dark-border: ;
+  /* LIGHT THEME PALLETE */
+  --light-white-darker: #f7f7f7;
+  --light-light-grey: #dedede;
+  --light-grey: #bbb;
+  --light-dark-grey: #333;
+  --light-lavendar: #9c88ff;
+  --light-green: #2ecc71;
+  --light-dark-orange: #c0392b;
+  --light-light-red: #e74c3c;
+
+  /* DARK THEME PALLETE */
+  --dark-background: #121212;
+  --dark-container-background: #282828;
+  --dark-border: #3f3f3f;
+  --dark-border-lighter: #8b8b8b;
   --dark-text: #fff;
+  --dark-text-placeholder: #ecf0f1;
+  --dark-input-background: #393939;
+  --dark-placeholder-text: #969696;
   --dark-btn: ;
   --dark-income: ;
   --dark-expense: ;
@@ -75,7 +95,7 @@ h3 {
 }
 
 #dark h3 {
-  border-bottom: 1px solid var(--dark-border-bottom);
+  border-bottom: 1px solid var(--dark-border-lighter);
 }
 
 h4 {
@@ -101,7 +121,7 @@ p {
 
 #dark .inc-exp-container {
   background-color: var(--dark-container-background);
-  box-shadow: var(--dark-box-shadow);
+  /* box-shadow: var(--dark-box-shadow); */
 }
 
 .inc-exp-container > div {
@@ -114,7 +134,7 @@ p {
 }
 
 #dark .inc-exp-container > div:first-of-type {
-  border-right: 1px solid var(--dark-border);
+  border-right: 2px solid var(--dark-border);
 }
 
 .money {
@@ -146,7 +166,6 @@ label {
 
 input[type='text'],
 input[type='number'] {
-  
   border-radius: 2px;
   display: block;
   font-size: 16px;
@@ -157,13 +176,23 @@ input[type='number'] {
 #light .container input[type='text'],
 #light .container input[type='number'] {
   border: 1px solid var(--light-border);
-  background-color: blue;
 }
 
 #dark .container input[type='text'],
 #dark .container input[type='number'] {
   border: 1px solid var(--dark-border);
-  background-color: blue;
+  background-color: var(--dark-input-background);
+  color: #fff;
+}
+
+.container input[type='text']:focus,
+.container input[type='number']:focus {
+  outline: 1px solid var(--dark-border-lighter)
+}
+
+#dark .container input[type='text']::placeholder,
+#dark .container input[type='number']::placeholder {
+  color: var(--dark-text-placeholder);
 }
 
 .btn {
@@ -199,7 +228,6 @@ input[type='number'] {
 }
 
 .list li {
-  color: #333;
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -248,9 +276,6 @@ input[type='number'] {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-
-
- 
 
 .list li:hover .delete-btn {
   opacity: 1;
